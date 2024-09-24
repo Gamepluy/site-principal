@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>jQuery com Bootstrap</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #janela {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: #069;
+            top: 5px; 
+            left: 10px; 
+            border: 2px solid black;
+        }
+        button {
+            margin: 5px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function() {
+            const distancia = 80; 
+            function moverObjeto(direcao) {
+                let pos = $('#janela').position();
+                let novaPos = {};
+
+                switch(direcao) {
+                    case 'direita':
+                        novaPos.left = pos.left + distancia;
+                        break;
+                    case 'esquerda':
+                        novaPos.left = pos.left - distancia;
+                        break;
+                    case 'baixo':
+                        novaPos.top = pos.top + distancia;
+                        break;
+                    case 'cima':
+                        novaPos.top = pos.top - distancia;
+                        break;
+                }
+                
+                $('#janela').animate(novaPos, 500);
+            }
+
+            $('#direita').click(function() { moverObjeto('direita'); });
+            $('#esquerda').click(function() { moverObjeto('esquerda'); });
+            $('#baixo').click(function() { moverObjeto('baixo'); });
+            $('#cima').click(function() { moverObjeto('cima'); });
+        });
+    </script>
+</head>
+<body class="container">
+    <div class="text-center">
+        <input type="button" class="btn btn-primary" id="direita" value="Mover para Direita" />
+        <input type="button" class="btn btn-primary" id="esquerda" value="Mover para Esquerda" />
+        <input type="button" class="btn btn-primary" id="baixo" value="Mover para Baixo" />
+        <input type="button" class="btn btn-primary" id="cima" value="Mover para Cima" />
+    </div>
+    <div id="janela"></div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
